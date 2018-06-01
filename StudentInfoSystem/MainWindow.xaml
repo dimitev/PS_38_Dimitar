@@ -1,0 +1,83 @@
+﻿<Window x:Class="StudentInfoSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        xmlns:local="clr-namespace:StudentInfoSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="485"
+        ResizeMode="NoResize"
+       >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="LogoImage" 
+           Height="150" 
+           Width="150" 
+           Source="default-user-image.png" 
+           Grid.Column="0" />
+        <StackPanel Orientation="Vertical" Grid.Column="2" >
+            <Label x:Name="currentUser" Height="25" FontSize="12"/>
+
+            <GroupBox x:Name="gbUser" Header="Personal data" HorizontalAlignment="Left" Height="120" Margin="10,0,10,0" VerticalAlignment="Top" Width="250">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblName" Content="Name:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="75"/>
+                        <TextBox x:Name="txtName" TextWrapping="Wrap" Text="{Binding Current.Name}" Width="150" Margin="10,5,10,5" Height="20"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblSurame" Content="Surname:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="75"/>
+                        <TextBox x:Name="txtSurname" TextWrapping="Wrap"  Text="{Binding Current.SurName}" Width="150" Margin="10,5,10,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblFamilyname" Content="Familyname:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="75"/>
+                        <TextBox x:Name="txtFamilyname" TextWrapping="Wrap" Width="150"  Text="{Binding Current.FamName}" Margin="10,5,10,5"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="gbUniInfo" Header="Student data" HorizontalAlignment="Left" Height="230" Margin="10,10,10,0" VerticalAlignment="Top" Width="250">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblFaculty" Content="Faculty:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <ComboBox x:Name="cboxFaculty" ItemsSource="{Binding ShownFaculties}" Width="160" Margin="10,5,10,5" Height="20" SelectedItem="{Binding Current.Faculty}" SelectionChanged="UpdateSpec"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblSpaciality" Content="Speciality:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <ComboBox x:Name="cboxSpeciality"  ItemsSource="{Binding ShownSpec}" SelectedItem="{Binding Current.Speciality}" Width="160" Margin="10,5,10,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblDegree" Content="Degree:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <ComboBox x:Name="cboxDegree"  ItemsSource="{Binding ShownDegree}" SelectedItem="{Binding Current.Degree}" Width="160" Margin="10,5,10,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblMass" Content="Mass:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <TextBox x:Name="txtMass" TextWrapping="Wrap"  Text="{Binding Current.Mass}" Width="50" Margin="10,5,10,5"/>
+                        <Label x:Name="lblGroup" Content="Group:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="45"/>
+                        <TextBox x:Name="txtGroup" TextWrapping="Wrap" Width="45"  Text="{Binding Current.Group}" Margin="10,5,10,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblYear" Content="Year:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <TextBox x:Name="txtYear" TextWrapping="Wrap"  Text="{Binding Current.Year}" Width="160" Margin="10,5,10,5" SpellCheck.IsEnabled="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblStatus" Content="Status:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <ComboBox x:Name="cboxStatus"  ItemsSource="{Binding StudStatusChoices}" SelectedItem="{Binding Current.Status}" Width="160" Margin="10,5,10,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblFnum" Content="F.Num:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="65"/>
+                        <TextBox x:Name="txtFnum" TextWrapping="Wrap" Width="160"  Text="{Binding Current.Fnom}" Margin="10,5,10,5" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnClear" Content="Clear" Margin="10,5,5,0" Click="btnClear_Click" Width="50"/>
+                <Button x:Name="btnLogout" Content="Log out" Margin="5,5,5,0" Click="btnLogout_Click" Width="50"/>
+                <Button x:Name="btnSearch" Content="Search" Margin="5,5,5,0" Click="btnClear_Search" Width="50"/>
+                <Button x:Name="btnPermisions" Content="Permision" Margin="5,5,5,0" Click="btnPerm_Click" Width="70"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
